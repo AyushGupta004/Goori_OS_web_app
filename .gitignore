@@ -1,0 +1,31 @@
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# User uploads (keep folder structure via .gitkeep, ignore actual uploads)
+Ai_voice/uploads/files/mobile/*
+!Ai_voice/uploads/files/mobile/.gitkeep
+Ai_voice/uploads/files/mobile/photos/*
+!Ai_voice/uploads/files/mobile/photos/.gitkeep
+uploads/*
+!uploads/**/.gitkeep
+
+# Session persistence
+Ai_voice/data/
+data/sessions.json
+*.sessions.json
+
+# IDE & OS artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

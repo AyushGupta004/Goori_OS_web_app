@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova OS — Windows AI Bridge</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Desktop Area -->
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" ondblclick="window.WindowManager.openApp('nova-voice')" title="Open Nova Voice Agent">
+                <div class="icon">🎤</div>
+                <div class="label">Nova Voice</div>
+            </div>
+            <div class="desktop-icon" ondblclick="window.WindowManager.openApp('files')" title="Browse Uploaded Files">
+                <div class="icon">📁</div>
+                <div class="label">Files</div>
+            </div>
+            <div class="desktop-icon" ondblclick="window.WindowManager.openApp('terminal')" title="Interactive Terminal">
+                <div class="icon">🖥</div>
+                <div class="label">Terminal</div>
+            </div>
+            <div class="desktop-icon" ondblclick="window.WindowManager.openApp('editor')" title="Text Editor">
+                <div class="icon">📝</div>
+                <div class="label">Text Editor</div>
+            </div>
+            <div class="desktop-icon" ondblclick="window.WindowManager.openApp('settings')" title="Bridge & Device Settings">
+                <div class="icon">⚙</div>
+                <div class="label">Settings</div>
+            </div>
+        </div>
+
+        <!-- Persistent Desktop Pairing Widget -->
+        <div class="desktop-pairing-widget" id="desktop-pairing-widget">
+            <div class="widget-header">
+                <span class="widget-dot pulse"></span>
+                <span class="widget-title">PHONE PAIRING PIN</span>
+            </div>
+            <div class="widget-body">
+                <div class="pairing-pin-display" id="pairing-pin-display">------</div>
+                <div class="pairing-subtext" id="pairing-timer-display">Expires in: 05:00</div>
+                <div class="pairing-contact-display no-contact" id="pairing-contact-display">
+                    <span id="pairing-contact-text">No phone has reached this PC yet. Check Wi-Fi, firewall and router isolation</span>
+                </div>
+                <div class="pairing-meta-info" id="pairing-meta-info">HTTP 7890 | WS 7891</div>
+                <div class="pairing-attempt-display" id="pairing-attempt-display" style="display: none;"></div>
+                <div class="pairing-actions">
+                    <button class="btn-widget-action" onclick="window.regeneratePin()" title="Generate a fresh 6-digit code">↻ REFRESH PIN</button>
+                    <button class="btn-widget-action" onclick="window.WindowManager.openApp('settings')">SETTINGS</button>
+                </div>
+            </div>
+            <div class="widget-footer" id="pairing-client-status">
+                <span class="status-indicator disconnected" id="tray-status-dot"></span>
+                <span id="pairing-status-label">No phone connected</span>
+            </div>
+        </div>
+
+        <!-- Window Container (populated via JS) -->
+        <div id="window-manager"></div>
+
+        <!-- Flash overlay for screenshot command feedback -->
+        <div id="screenshot-flash" class="screenshot-flash"></div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <div class="start-button" onclick="window.WindowManager.openApp('nova-voice')" title="Nova OS">
+            🐉 NOVA OS
+        </div>
+        <div class="open-apps" id="taskbar-apps">
+            <!-- Dynamic taskbar items -->
+        </div>
+        <div class="system-tray">
+            <div class="tray-item pin-pill" onclick="window.WindowManager.openApp('settings')" title="Click to view pairing info">
+                PIN: <span id="tray-pin-val">------</span>
+            </div>
+            <div class="tray-item" id="sys-mic">MIC STANDBY</div>
+            <div class="tray-item" id="sys-cpu">CPU 8%</div>
+            <div class="tray-item clock">
+                <div id="sys-time">00:00</div>
+                <div id="sys-date" class="date-subtext">2026-09-28</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/bridge_client.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/window_manager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
