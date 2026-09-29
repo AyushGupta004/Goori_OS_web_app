@@ -286,7 +286,7 @@ class PairingManager:
         session["last_seen"] = time.time()
         return session
 
-    def get_paired_devices(self) -> List[Dict[str, Any]]:
+    def get_paired_devices(self) -> list[Dict[str, Any]]:
         """Returns live list of active paired mobile devices for Settings app."""
         self.prune_expired_sessions()
         devices = []
